@@ -35,5 +35,42 @@ namespace Thanh_Dat_LLC_Frameworks.Cache
             }
             return null;
         }
+
+        public static void SetCache(string fileName, string contents)
+        {
+            var fullPath = AppDomain.CurrentDomain.BaseDirectory + @"Caches\" + fileName;
+            if (!File.Exists(fullPath)) File.Create(fullPath);
+            using (StreamWriter writer = new StreamWriter(fullPath, true))
+            {
+                writer.Write(contents, true);
+            }
+        }
+        public static void SetCache(string path, string fileName, string contents)
+        {
+            var fullPath = path + fileName;
+            if (!File.Exists(fullPath)) File.Create(fullPath);
+            using (StreamWriter writer = new StreamWriter(fullPath, true))
+            {
+                writer.Write(contents, true);
+            }
+        }
+        public static void CheckCacheExpired(string fileName, int hourExpired)
+        {
+            var fullPath = AppDomain.CurrentDomain.BaseDirectory + @"Caches\" + fileName;
+            if (File.Exists(fullPath))
+            {
+                TimeSpan ts = DateTime.Now - File.GetLastAccessTime(fullPath);
+                if (ts.Hours > hourExpired) File.Delete(fullPath);
+            }
+        }
+        public static void CheckCacheExpired(string path, string fileName, int hourExpired)
+        {
+            var fullPath = path + fileName;
+            if (File.Exists(fullPath))
+            {
+                TimeSpan ts = DateTime.Now - File.GetLastAccessTime(fullPath);
+                if (ts.Hours > hourExpired) File.Delete(fullPath);
+            }
+        }
     }
 }

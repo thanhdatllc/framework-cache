@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Thanh Dat LLC Frameworks.Cache")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Thanh Dat LLC Frameworks Cache - Cache File in C#")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Thanh Dat LLC")]
 [assembly: AssemblyProduct("Thanh Dat LLC Frameworks.Cache")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright ©  2016 Thanh Dat LLC")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
