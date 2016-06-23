@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Thanh_Dat_LLC_Frameworks.Cache
 {
@@ -15,20 +11,21 @@ namespace Thanh_Dat_LLC_Frameworks.Cache
             if (File.Exists(fullPath))
             {
                 // Use StreamReader to consume the entire text file.
-                using (StreamReader reader = new StreamReader(fullPath))
+                using (var reader = new StreamReader(fullPath))
                 {
                     return reader.ReadToEnd();
                 }
             }
             return null;
         }
+
         public static string GetCache(string path, string fileName)
         {
             var fullPath = path + fileName;
             if (File.Exists(fullPath))
             {
                 // Use StreamReader to consume the entire text file.
-                using (StreamReader reader = new StreamReader(fullPath))
+                using (var reader = new StreamReader(fullPath))
                 {
                     return reader.ReadToEnd();
                 }
@@ -40,35 +37,38 @@ namespace Thanh_Dat_LLC_Frameworks.Cache
         {
             var fullPath = AppDomain.CurrentDomain.BaseDirectory + @"Caches\" + fileName;
             if (!File.Exists(fullPath)) File.Create(fullPath);
-            using (StreamWriter writer = new StreamWriter(fullPath, true))
+            using (var writer = new StreamWriter(fullPath, true))
             {
                 writer.Write(contents, true);
             }
         }
+
         public static void SetCache(string path, string fileName, string contents)
         {
             var fullPath = path + fileName;
             if (!File.Exists(fullPath)) File.Create(fullPath);
-            using (StreamWriter writer = new StreamWriter(fullPath, true))
+            using (var writer = new StreamWriter(fullPath, true))
             {
                 writer.Write(contents, true);
             }
         }
+
         public static void CheckCacheExpired(string fileName, int hourExpired)
         {
             var fullPath = AppDomain.CurrentDomain.BaseDirectory + @"Caches\" + fileName;
             if (File.Exists(fullPath))
             {
-                TimeSpan ts = DateTime.Now - File.GetLastAccessTime(fullPath);
+                var ts = DateTime.Now - File.GetLastAccessTime(fullPath);
                 if (ts.Hours > hourExpired) File.Delete(fullPath);
             }
         }
+
         public static void CheckCacheExpired(string path, string fileName, int hourExpired)
         {
             var fullPath = path + fileName;
             if (File.Exists(fullPath))
             {
-                TimeSpan ts = DateTime.Now - File.GetLastAccessTime(fullPath);
+                var ts = DateTime.Now - File.GetLastAccessTime(fullPath);
                 if (ts.Hours > hourExpired) File.Delete(fullPath);
             }
         }
