@@ -58,7 +58,7 @@ namespace Thanh_Dat_LLC_Frameworks.Cache
             var fullPath = AppDomain.CurrentDomain.BaseDirectory + @"Caches\" + fileName;
             if (File.Exists(fullPath))
             {
-                var ts = DateTime.Now - File.GetLastAccessTime(fullPath);
+                var ts = DateTime.Now - File.GetCreationTime(fullPath);
                 if (ts.Hours > hourExpired) File.Delete(fullPath);
             }
         }
@@ -68,7 +68,7 @@ namespace Thanh_Dat_LLC_Frameworks.Cache
             var fullPath = path + fileName;
             if (File.Exists(fullPath))
             {
-                var ts = DateTime.Now - File.GetLastAccessTime(fullPath);
+                var ts = DateTime.Now - File.GetCreationTime(fullPath);
                 if (ts.Hours > hourExpired) File.Delete(fullPath);
             }
         }
